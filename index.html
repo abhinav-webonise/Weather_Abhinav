@@ -1,96 +1,37 @@
-<!DOCTYPE Html>
-<html ng-app="app">
+<html>
 <head>
-<title>Weather Application</title>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-<script src="app.js"></script>
+<title> 
+Weather App in JS
+</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
+</script>
 </head>
-<body ng-controller="getweather as gw">
-<center>
-Hello Abhinav!<br/><br/>
+<body>
 
-<br/><br/>
-Pune's Temperature is: {{ gw.data.list[0].temp.day | json }} <br/><br/>
-
-<table border='1'>
-
-<tr>
-<th>Columns</th>
-<th>Values</th>
-</tr>
-
-<tr>
-<td>City Name
-<td>{{gw.data.city.name}}
-</tr>
-
-<tr>
-<td>City Latitude
-<td>{{gw.data.city.coord.lat}}
-</tr>
-
-<tr>
-<td>City Longitude
-<td>{{gw.data.city.coord.lon}}
-</tr>
-
-<tr>
-<td>Country Name
-<td>{{gw.data.city.country}}
-</tr>
-
-<tr>
-<td>Temperature
-<td>{{gw.data.list[0].temp.day}}
-</tr>
-
-<tr>
-<td>Minimum Temperature
-<td>{{gw.data.list[0].temp.min}}
-</tr>
-
-<tr>
-<td>Maximum Temperature
-<td>{{gw.data.list[0].temp.max}}
-</tr>
-
-<tr>
-<td>Night Temperature
-<td>{{gw.data.list[0].temp.night}}
-</tr>
-
-<tr>
-<td>Evening Temperature
-<td>{{gw.data.list[0].temp.eve}}
-</tr>
-
-<tr>
-<td>Morning Tempearture
-<td>{{gw.data.list[0].temp.morn}}
-</tr>
-
-<tr>
-<td>Pressure
-<td>{{gw.data.list[0].pressure}}
-</tr>
-
-<tr>
-<td>Humidity
-<td>{{gw.data.list[0].humidity}}
-</tr>
-
-<tr>
-<td>Weather
-<td>{{gw.data.list[0].weather[0].main}}
-</tr>
-
-</table>
+<p> WEATHER APPLICATION</p>
+<div id="abc"> </div>
+<button type="button" onclick="loadDoc()">Temperature</button>
 
 
+<script>
+function loadDoc() {
+  var xhttp;
+  if (window.XMLHttpRequest) {
+    // code for modern browsers
+    xhttp = new XMLHttpRequest();
+    } else {
+    // code for IE6, IE5
+    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xhttp.onreadystatechange = function() {
+   if (xhttp.readyState == 4 && xhttp.status == 200) {
+      document.getElementById("abc").innerHTML = xhttp.responseText;
+    }
+  };
+  xhttp.open("GET", "http://api.openweathermap.org/data/2.5/weather?q=Pune&appid=31ac4149e2c1387875fe3ce375594d7c", true);
+  xhttp.send();
+}
+</script>
 
-<br/><br/>
-<!--{{ gw.data | json }}-->
-</center>
 </body>
 </html>
-
